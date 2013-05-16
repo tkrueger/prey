@@ -10,6 +10,7 @@ class Specification
 
   def matches(message)
     unmatched_keys = @spec.keys.find_all do |key|
+      return true if message[key].nil?
       if @spec[key].respond_to?( :matches?)
         !@spec[key].matches? message[key]
       else

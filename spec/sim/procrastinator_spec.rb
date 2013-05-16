@@ -1,9 +1,10 @@
 require 'ap'
 require_relative '../have_like'
-require_relative '../../spec/message_matchers'
+require_relative '../../spec/matchers'
 require_relative '../../src/ui/coordinate'
 
 require_relative '../../src/sim/metabolism'
+
 class Procrastinator
 
   attr_reader :threshold, :number_of_offspring, :energy_per_offspring
@@ -34,19 +35,6 @@ class Procrastinator
   end
 end
 
-module MessageTransmitter
-
-  def initialize
-    @untransmitted_messages = []
-  end
-
-  def transmit(message)
-    @untransmitted_messages.push message
-  end
-
-
-end
-
 class MockOrganism
   attr_accessor :energy, :untransmitted_messages, :location
 
@@ -57,22 +45,6 @@ class MockOrganism
     @location = location
   end
 end
-
-RSpec::Matchers.define :a_location_near do |expected|
-  match do |actual|
-    return false unless actual.respond_to?(:x) && actual.respond_to?(:y)
-    (expected.x-2..expected.x+2) === actual.x && (expected.y-2..expected.y + 2) === actual.y
-  end
-
-  description do
-    "a location near #{expected.inspect}"
-  end
-
-  failure_message_for_should do |actual|
-    "expected that #{actual} would be a multiple of #{expected}"
-  end
-end
-
 
 describe Procrastinator do
 
@@ -114,7 +86,7 @@ describe Procrastinator do
       expect { @proc.power_from metabolism }.to change{metabolism.energy}.from(100).to(60)
     end
 
-    it "places offspring near organism in environment" do
+    pending "places offspring near organism in environment" do
       @proc.cycle(@organism, nil)
       @organism.should have(@proc.number_of_offspring).untransmitted_messages
                        .like({
