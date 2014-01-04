@@ -15,7 +15,7 @@ describe Metabolism do
     end
   end
 
-  class Organism
+  class OrganismMock
     attr_reader :parts
 
     def initialize
@@ -24,14 +24,14 @@ describe Metabolism do
   end
 
   it "lets parts consume energy" do
-    organism = Organism.new
+    organism = OrganismMock.new
     metabolism = Metabolism.new(100)
 
     expect {metabolism.power(organism) }.to change  {metabolism.energy}.by -5
   end
 
   it "survives with enough energy" do
-    organism = Organism.new
+    organism = OrganismMock.new
     metabolism = Metabolism.new(51)
 
     metabolism.power(organism)
@@ -39,7 +39,7 @@ describe Metabolism do
   end
 
   it "dies when all energy is gone" do
-    organism = Organism.new
+    organism = OrganismMock.new
     metabolism = Metabolism.new(5)
 
     metabolism.power(organism)
@@ -47,7 +47,7 @@ describe Metabolism do
   end
 
   it "has a minimum energy consumption" do
-    organism = Organism.new
+    organism = OrganismMock.new
     metabolism = Metabolism.new(initial_energy=20, base_consumption=2)
     expect {metabolism.power(organism)}.to change {metabolism.energy}.by -7
   end

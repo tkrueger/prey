@@ -32,8 +32,6 @@ describe Moveable do
     where_it_was = Location.new(100,100)
     mover = Mover.new(at=where_it_was)
     mover.move_for(5)
-    expect(mover).to have_untransmitted_messages
-
     expect(mover).to have(1).untransmitted_messages
                     .like({
                               :type => "Moved",

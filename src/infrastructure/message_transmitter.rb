@@ -10,4 +10,8 @@ module MessageTransmitter
     @untransmitted_messages.push message
   end
 
+  def clear_untransmitted_messages
+    @untransmitted_messages.clear
+  end
+
 end
