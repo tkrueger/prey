@@ -1,6 +1,5 @@
 require 'java_imports'
 require 'entity'
-require 'location'
 
 java_import 'com.jme3.app.SimpleApplication'
 java_import 'com.jme3.scene.shape.Box'
@@ -11,7 +10,7 @@ java_import 'com.jme3.math.ColorRGBA'
 class Game < SimpleApplication
 
     class SomeEntity < Entity
-      include Location
+
     end
 
     def initialize
@@ -27,6 +26,3 @@ class Game < SimpleApplication
       rootNode.attachChild(geom)
     end
 end
-
-game = Game.new
-game.start

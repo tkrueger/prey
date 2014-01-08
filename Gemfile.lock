@@ -21,6 +21,8 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     lumberjack (1.0.4)
+    macaddr (1.6.1)
+      systemu (~> 2.5.0)
     method_source (0.8.2)
     pry (0.9.12.4)
       coderay (~> 1.0)
@@ -45,8 +47,11 @@ GEM
     slop (3.4.7)
     spoon (0.0.4)
       ffi
+    systemu (2.5.2)
     thor (0.18.1)
     timers (1.1.0)
+    uuid (2.3.7)
+      macaddr (~> 1.0)
 
 PLATFORMS
   java
@@ -56,3 +61,5 @@ DEPENDENCIES
   guard
   libnotify
   rspec
+  rspec-expectations
+  uuid
