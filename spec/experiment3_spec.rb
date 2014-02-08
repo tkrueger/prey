@@ -10,13 +10,8 @@ end
 
 describe 'Systems - Cost of living' do
 
-  class Powered
-
-  end
-
   class APoweredComponent < Powered
   end
-
 
   class NonPoweredComponent
 
