@@ -1,6 +1,7 @@
 require 'rspec'
 require 'spec_helper'
 
+require 'systems/metabolism'
 require 'entity_framework'
 
 class Procrastination
@@ -8,16 +9,6 @@ class Procrastination
 end
 
 describe 'Systems - Cost of living' do
-
-  class CostOfLiving
-
-    def process(entity)
-      raise "Missing Energy component" unless entity.has Energy
-      number_of_components = entity.all(Powered).size
-      entity[Energy].energy_level -= number_of_components
-    end
-
-  end
 
   class Powered
 
@@ -33,7 +24,7 @@ describe 'Systems - Cost of living' do
 
   before :each do
     @entity = Entity.new
-    @system = CostOfLiving.new
+    @system = Metabolism.new
   end
 
   it 'only works on entities that own a component type' do

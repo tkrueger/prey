@@ -1,7 +1,7 @@
 require 'rspec'
+require 'spec_helper'
 
-require_relative '../src/entity'
-require_relative '../src/energy'
+require 'entity_framework'
 
 describe 'Entity System' do
 
