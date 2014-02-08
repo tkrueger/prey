@@ -1,33 +1,36 @@
 require 'rspec'
+require 'spec_helper'
 
-require './entity'
-require './energy'
+require 'entity'
+require 'components'
 
 class EnergizedEntity < Entity
-  include Energy
-
   def initialize
     super
+    self << Energy.new(100)
   end
 end
 
 describe 'Energy' do
 
+  before :each do
+    @entity = EnergizedEntity.new
+  end
+
   it 'should should provide an energy level' do
-    EnergizedEntity.new.energy_level.should == 0
+    @entity[Energy].energy_level.should == 100
   end
 
   it 'should provide behavior' do
-    entity = EnergizedEntity.new
-    entity.add_energy 100
-    entity.energy_level.should == 100
+    @entity[Energy].energy_level += 100
+    @entity[Energy].energy_level.should == 200
   end
 
   it 'treats each Entity individually if initialize is called' do
     entity1 = EnergizedEntity.new
     entity2 = EnergizedEntity.new
-    entity1.add_energy 100
-    entity1.energy_level.should == 100
-    entity2.energy_level.should == 0
+    entity1[Energy].add 100
+    entity1[Energy].energy_level.should == 200
+    entity2[Energy].energy_level.should == 100
   end
 end

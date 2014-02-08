@@ -1,4 +1,4 @@
-require 'src/entity_framework'
+require 'entity_framework'
 
 class Metabolism
   def process(entity)
