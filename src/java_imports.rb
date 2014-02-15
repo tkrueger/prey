@@ -7,4 +7,5 @@ module JavaImports
   require 'java'
   require 'jruby/core_ext'
 
+  java_import 'com.jme3.math.Vector3f'
 end

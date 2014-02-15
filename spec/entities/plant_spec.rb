@@ -2,12 +2,13 @@ require 'rspec'
 require 'spec_helper'
 
 require 'entity_framework'
+require 'java_imports'
 require 'systems'
 
 describe 'Plants' do
 
   before :each do
-    @plant = Plant.new(100)
+    @plant = Plant.new(energy_level=100, location=Vector3f.new)
   end
 
   it 'has energy' do
