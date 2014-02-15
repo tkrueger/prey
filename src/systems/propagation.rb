@@ -2,8 +2,8 @@ require 'entity_framework'
 
 class Propagation
 
-  def initialize(environment)
-    @environment = environment
+  def initialize(entity_manager)
+    @entity_manager = entity_manager
   end
 
   def process(entity)
@@ -21,7 +21,7 @@ class Propagation
             comp
           end
         }
-        @environment.add(new_one)
+        @entity_manager.add(new_one)
       end
     end
   end

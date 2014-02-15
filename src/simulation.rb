@@ -11,19 +11,17 @@ class Simulation
   attr_accessor :entities, :environment
 
   def initialize
+    @entity_manager = EntityManager.new
     @sun = Sun.new
     @photosynthesis = Photosynthesis.new(@sun)
     @environment = Environment.new
-    @environment.add Plant.new(100.0, Vector3f.new)
+    @entity_manager.add Plant.new(100.0, Vector3f.new)
     @propagation = Propagation.new(@environment)
   end
 
   def step(tpf=20)
-    photo = @environment.entities.select {|entity| not entity[Photosynthetic].nil?}
-    photo.each { |entity| @photosynthesis.process(entity, tpf) }
-
-    prop = @environment.entities.select {|entity| not entity[Propagating].nil?}
-    prop.each {|entity| @propagation.process entity}
+    @entity_manager.by_component(Photosynthetic).each { |entity| @photosynthesis.process(entity, tpf) }
+    @entity_manager.by_component(Propagating).each {|entity| @propagation.process entity}
   end
 
   def dump
