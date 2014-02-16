@@ -8,7 +8,7 @@ describe 'Procrastination' do
   before :each do
     @entity = Entity.new
     @entity << Energy.new(:energy_level => 100)
-    @entity << Propagating.new
+    @entity << Propagating.new(:energy_cost=>50)
 
     @entity_manager = EntityManager.new
     @entity_manager.add(@entity)
@@ -43,8 +43,19 @@ describe 'Procrastination' do
     dispersed_energy.should == 20
   end
 
+  it 'stores the generation number in entities' do
+    @entity[Propagating].generation.should == 1
+
+    @entity[Energy].energy_level = 51
+    @entity[Propagating].threshold = 50
+
+    spawned = @system.process @entity
+    spawned.size.should == 2
+    spawned.each {|offspring| offspring[Propagating].generation.should == 2}
+  end
 
   describe 'mutation' do
+
 
     it 'changes component attributes according to mutation info' do
       @entity[Energy].energy_level = 51

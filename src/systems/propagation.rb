@@ -60,7 +60,7 @@ class Propagation
                     end
         new_one << component
       end
-
+      new_one[Propagating].generation = @entity[Propagating].generation + 1
       new_one
     end
 

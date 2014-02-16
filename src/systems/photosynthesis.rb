@@ -7,8 +7,9 @@ class Photosynthesis
   end
 
   def process(entity, t)
+    efficiency = entity[Photosynthetic].efficiency
     location = entity[Positioned].location
     sun_intensity = @sun.intensity_at location
-    entity[Energy].add sun_intensity * t
+    entity[Energy].add sun_intensity * t * efficiency
   end
 end

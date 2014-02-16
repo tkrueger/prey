@@ -7,6 +7,7 @@ class Entity
   end
 
   def <<(component)
+    assert_is_component component
     @components << component
   end
 
@@ -24,4 +25,10 @@ class Entity
   end
 
   alias_method :has, :[]
+
+  private
+
+  def assert_is_component(component)
+    raise "argument is not a Component instance: #{component}" unless component.is_a? Component
+  end
 end
