@@ -31,6 +31,7 @@ class Propagation
     def initialize(entity)
       @entity = entity
       @entity_type = entity.class
+      @propagating = entity[Propagating]
       @number_of_offspring = entity[Propagating].number_of_offspring
       @mutation_rate = entity[Propagating].mutation_rate
       @energy_cost = entity[Propagating].energy_cost
@@ -60,6 +61,7 @@ class Propagation
                     end
         new_one << component
       end
+      scatter new_one
       new_one[Propagating].generation = @entity[Propagating].generation + 1
       new_one
     end
@@ -77,6 +79,14 @@ class Propagation
       entities.each do |e|
         e[Energy].energy_level = energy_to_give
       end
+    end
+
+    def scatter(entity)
+      scatter_x = @propagating.spread_min + rand() * @propagating.spread_min
+      scatter_y = @propagating.spread_max + rand() * @propagating.spread_max
+
+      position = entity[Positioned]
+      position.location = position.location.add(scatter_x, scatter_y, 0)
     end
   end
 
