@@ -7,7 +7,7 @@ require 'components'
 class EnergizedEntity < Entity
   def initialize
     super
-    self << Energy.new(100)
+    self << Energy.new(:energy_level => 100)
   end
 end
 
@@ -17,8 +17,12 @@ describe 'Energy' do
     @entity = EnergizedEntity.new
   end
 
-  it 'should should provide an energy level' do
+  it 'should should provide a default energy level' do
     @entity[Energy].energy_level.should == 100
+  end
+
+  it 'should accept a value for energy level' do
+    Energy.new({:energy_level => 101}).energy_level.should == 101
   end
 
   it 'should provide behavior' do

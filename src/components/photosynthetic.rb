@@ -4,7 +4,7 @@ class Photosynthetic < Component
 
   attr_accessor :efficiency
 
-  def initialize
-    @efficiency = 1
+  def initialize(args={:efficiency => 1})
+    super(args)
   end
 end

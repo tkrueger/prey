@@ -4,11 +4,11 @@ require 'entity'
 require 'java_imports'
 
 class Plant < Entity
-  def initialize(energy_level=100, location=Vector3f.new)
+  def initialize(args={:energy_level=>100, :location=>Vector3f.new})
     super()
-    self << Energy.new(energy_level)
+    self << Energy.new({:energy_level => args[:energy_level]})
     self << Photosynthetic.new
-    self << Positioned.new(location)
-    self << Propagating.new(100, 120)
+    self << Positioned.new({:location => args[:location]})
+    self << Propagating.new
   end
 end

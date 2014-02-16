@@ -8,7 +8,7 @@ require 'systems'
 describe 'Plants' do
 
   before :each do
-    @plant = Plant.new(energy_level=100, location=Vector3f.new)
+    @plant = Plant.new(:energy_level=>100, :location=>Vector3f.new)
   end
 
   it 'has energy' do
@@ -20,6 +20,6 @@ describe 'Plants' do
   end
 
   it 'gains energy when processed by Photosynthesis engine' do
-    expect {Photosynthesis.new(Sun.new).process(@plant)}.to change {@plant[Energy].energy_level}
+    expect {Photosynthesis.new(Sun.new).process(@plant, 1)}.to change {@plant[Energy].energy_level}
   end
 end

@@ -15,7 +15,7 @@ class Simulation
     @sun = Sun.new
     @photosynthesis = Photosynthesis.new(@sun)
     @environment = Environment.new
-    @entity_manager.add Plant.new(100.0, Vector3f.new)
+    @entity_manager.add Plant.new(:energy_level => 100.0, :location => Vector3f.new)
     @propagation = Propagation.new(@entity_manager)
   end
 

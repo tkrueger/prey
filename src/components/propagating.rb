@@ -20,13 +20,11 @@ class MutationReate
   end
 end
 
-class Propagating
+class Propagating < Component
   attr_accessor :energy_cost, :number_of_offspring, :threshold, :mutation_rate
 
-  def initialize(energy_cost=100, threshold=150, number_of_offspring=2)
-    @energy_cost = energy_cost
-    @number_of_offspring = number_of_offspring
-    @threshold = threshold
+  def initialize(args={:energy_cost=>100, :threshold=>150, :number_of_offspring=>2})
+    super(args)
 
     @mutation_rate = {
         Photosynthetic => {
@@ -36,7 +34,5 @@ class Propagating
           }
         }
     }
-
-
   end
 end

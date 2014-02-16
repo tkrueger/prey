@@ -7,7 +7,7 @@ describe 'Procrastination' do
 
   before :each do
     @entity = Entity.new
-    @entity << Energy.new(100)
+    @entity << Energy.new(:energy_level => 100)
     @entity << Propagating.new
 
     @entity_manager = EntityManager.new

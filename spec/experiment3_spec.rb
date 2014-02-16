@@ -27,13 +27,13 @@ describe 'Systems - Cost of living' do
   end
 
   it 'changes the entities component data' do
-    @entity << Energy.new(100)
+    @entity << Energy.new({:energy_level =>100})
     @entity << APoweredComponent.new
     expect { @system.process @entity }.to change{@entity[Energy].energy_level}
   end
 
   it 'subtracts one energy per component that requires energy' do
-    @entity << Energy.new(100)
+    @entity << Energy.new({:energy_level =>100})
     @entity << APoweredComponent.new
     @entity << APoweredComponent.new
 
