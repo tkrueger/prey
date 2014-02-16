@@ -25,6 +25,10 @@ class EntityManager
     @entities_by_component[type]
   end
 
+  def number_of_entities
+    @entities.size
+  end
+
   private
 
   def index(entity)

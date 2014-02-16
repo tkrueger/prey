@@ -1,8 +1,10 @@
 require 'entity_framework'
 require 'entity'
 
+require 'java_imports'
+
 class Plant < Entity
-  def initialize(energy_level, location)
+  def initialize(energy_level=100, location=Vector3f.new)
     super()
     self << Energy.new(energy_level)
     self << Photosynthetic.new

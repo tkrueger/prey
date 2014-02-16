@@ -33,7 +33,7 @@ describe 'Awareness System' do
     def work_on(entity)
       entity.noticed_entities = [] unless entity.noticed_entities
       efficiency = entity.sight_efficiency
-      entity.environment.each do |other|
+      entity.entity_manager.each do |other|
         entity.noticed_entities << other
       end
     end

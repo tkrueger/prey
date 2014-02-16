@@ -19,5 +19,9 @@ class Entity
     @components.select { |item| item.is_a? component_type}
   end
 
+  def remove_components
+    @components = []
+  end
+
   alias_method :has, :[]
 end
